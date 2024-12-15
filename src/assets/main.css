@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+#app {
+  margin: 0 auto;
+  min-height: 100vh;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background: var(--bg-primary);
+  position: relative;
+}
+
+#app::before {
+  --size: 40px;
+  --line-light: rgba(186, 130, 144, 0.08); /* Reducida la opacidad */
+  --line-dark: rgba(186, 130, 144, 0.15); /* Reducida la opacidad */
+  content: '';
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background: 
+    linear-gradient(45deg, transparent 25%, var(--line) 25%, var(--line) 75%, transparent 75%) 50% 50% / var(--size) var(--size),
+    linear-gradient(-45deg, transparent 25%, var(--line) 25%, var(--line) 75%, transparent 75%) 50% 50% / var(--size) var(--size);
+  mask: linear-gradient(to bottom, 
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.5) 50%, /* Ajustado el valor medio */
+    rgba(255, 255, 255, 0.2) 100% /* Reducida la opacidad final */
+  );
+  -webkit-mask: linear-gradient(to bottom, 
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  top: 0;
+  transform-style: flat;
+  pointer-events: none;
+  z-index: 0;
+  transition: background 0.1s ease;
+  filter: blur(1.5px); /* Aumentado el blur */
+}
+
+#app::after {
+  content: 'T';
+  font-family: "Space Mono", monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--line);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  display: grid;
+  grid-template: repeat(calc(100vh / var(--size)), 1fr) / repeat(calc(100vw / var(--size)), 1fr);
+  place-items: center;
+  mask: linear-gradient(to bottom, 
+    rgba(255, 255, 255, 0.6) 0%, /* Reducida la opacidad inicial */
+    rgba(255, 255, 255, 0.4) 50%, /* Reducida la opacidad media */
+    rgba(255, 255, 255, 0.2) 100% /* Reducida la opacidad final */
+  );
+  -webkit-mask: linear-gradient(to bottom, 
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  filter: blur(0.5px); /* Añadido un ligero blur */
+}
+:root {
+  --bg-primary: #f8f2f4;
+  --bg-secondary: #9f5f72;
+  --text-primary: #4a3338;
+  --text-secondary: #725760;
+  --border-color: #dcc6cc;
+  --accent-color: #6f4252;
+  --line: rgba(186, 130, 144, 0.12);
+}
+
+:root.dark {
+  --bg-primary: #3d2a2f;
+  --bg-secondary: #341d25;
+  --text-primary: #f8f2f4;
+  --text-secondary: #e5d6da;
+  --border-color: #725760;
+  --accent-color: #cca0a9;
+  --line: rgba(186, 130, 144, 0.18)
+}
+
+html {
+  transition: 
+    background-color 0.1s ease, 
+    color 0.1s ease,
+    background 0.1s ease;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: 
+    background-color 0.3s ease, 
+    color 0.3s ease,
+    background 0.3s ease;
+}
+
+.theme-bg-primary { background-color: var(--bg-primary); }
+.theme-bg-secondary { background-color: var(--bg-secondary); }
+.theme-text-primary { color: var(--text-primary); }
+.theme-text-secondary { color: var(--text-secondary); }
+.theme-border { border-color: var(--border-color); }
+.theme-accent { color: var(--accent-color); }
