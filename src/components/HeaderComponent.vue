@@ -23,6 +23,44 @@ const currentLang = ref(translateUtils.getCurrentLanguage());
 
 const isResponsiveMode = computed(() => windowWidth.value <= 768);
 
+const scrollToSection = (sectionId: string) => {
+  const section = document.getElementById(sectionId);
+  if (section) {
+    const offset = headerHeight.value || 0;
+    const targetPosition = section.offsetTop - offset;
+
+    window.scrollTo({
+      top: targetPosition,
+      behavior: 'smooth'
+    });
+  }
+  closeMenu();
+};
+
+const updateActiveLink = () => {
+  const sections = ['hero', 'projects', 'about', 'contact'];
+  const currentPosition = window.scrollY + headerHeight.value + 100;
+
+  const activeSection = sections.find(sectionId => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const { offsetTop, offsetHeight } = element;
+      return currentPosition >= offsetTop && currentPosition < offsetTop + offsetHeight;
+    }
+    return false;
+  });
+
+  if (activeSection) {
+    const links = document.querySelectorAll('.desktop-nav a, .mobile-nav a');
+    links.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${activeSection}`) {
+        link.classList.add('active');
+      }
+    });
+  }
+};
+
 const updateWindowWidth = () => {
   windowWidth.value = window.innerWidth;
   if (!isResponsiveMode.value) {
@@ -33,7 +71,7 @@ const updateWindowWidth = () => {
 
 const handleScroll = () => {
   const currentScrollPosition = window.scrollY;
-  
+
   if (currentScrollPosition < headerHeight.value) {
     isHeaderVisible.value = true;
     lastScrollPosition.value = currentScrollPosition;
@@ -42,6 +80,8 @@ const handleScroll = () => {
 
   isHeaderVisible.value = currentScrollPosition < lastScrollPosition.value || currentScrollPosition < headerHeight.value;
   lastScrollPosition.value = currentScrollPosition;
+
+  updateActiveLink();
 };
 
 const debounce = (fn: (...args: unknown[]) => void, ms = 300) => {
@@ -68,7 +108,7 @@ const toggleLanguage = () => {
 
 const toggleMenu = () => {
   if (!isResponsiveMode.value) return;
-  
+
   isMenuOpen.value = !isMenuOpen.value;
   document.body.style.overflow = isMenuOpen.value ? 'hidden' : '';
 };
@@ -95,7 +135,8 @@ onMounted(() => {
   translateUtils.initializeLanguage();
   window.addEventListener('resize', debouncedUpdateWindowWidth);
   window.addEventListener('scroll', debouncedHandleScroll);
-  
+  window.addEventListener('scroll', updateActiveLink);
+
   const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
   darkModeMediaQuery.addEventListener('change', (e) => {
     if (!localStorage.getItem('theme')) {
@@ -109,7 +150,9 @@ onMounted(() => {
     document.body.style.paddingTop = `${headerHeight.value}px`;
   }
 
-  // Escuchar cambios de idioma
+  // Ejecutar una vez al inicio para establecer el enlace activo inicial
+  updateActiveLink();
+
   translateUtils.onLanguageChange((newLang: string) => {
     currentLang.value = newLang;
   });
@@ -118,105 +161,106 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', debouncedUpdateWindowWidth);
   window.removeEventListener('scroll', debouncedHandleScroll);
+  window.removeEventListener('scroll', updateActiveLink);
   document.body.style.paddingTop = '';
 });
 </script>
 <template>
-    <header class="header" :class="{ 
-      'dark-mode': isDarkMode,
-      'header-hidden': !isHeaderVisible,
-      'header-visible': isHeaderVisible 
-    }">
-      <div class="logo">
-        <Code :size="32" />
-        <span class="logo-text" data-translate="portfolio">Portfolio</span>
-      </div>
-  
-      <nav v-if="!isResponsiveMode" class="desktop-nav">
-        <a href="#home" @click="closeMenu">
-          <Home :size="20" />
+  <header class="header" :class="{
+    'dark-mode': isDarkMode,
+    'header-hidden': !isHeaderVisible,
+    'header-visible': isHeaderVisible
+  }">
+    <div class="logo">
+      <Code :size="32" />
+      <span class="logo-text" data-translate="portfolio">T0m4s1n</span>
+    </div>
+
+    <nav v-if="!isResponsiveMode" class="desktop-nav">
+      <a href="#hero" @click.prevent="scrollToSection('hero')">
+        <Home :size="20" />
+        <span>{{ translateUtils.translate('home') }}</span>
+      </a>
+
+      <a href="#projects" @click.prevent="scrollToSection('projects')">
+        <Briefcase :size="20" />
+        <span>{{ translateUtils.translate('projects') }}</span>
+      </a>
+
+      <a href="#about" @click.prevent="scrollToSection('about')">
+        <User :size="20" />
+        <span>{{ translateUtils.translate('about') }}</span>
+      </a>
+
+      <a href="#contact" @click.prevent="scrollToSection('contact')">
+        <Mail :size="20" />
+        <span>{{ translateUtils.translate('contact') }}</span>
+      </a>
+    </nav>
+
+    <div class="header-right">
+      <button
+        class="lang-toggle-btn"
+        @click="toggleLanguage"
+        :aria-label="translateUtils.translate('switch-lang')"
+        :title="translateUtils.translate('switch-lang')"
+      >
+        <Languages :size="20" />
+        <span class="lang-indicator">{{ currentLang.toUpperCase() }}</span>
+      </button>
+
+      <button
+        class="theme-toggle-btn"
+        @click="toggleTheme"
+        :aria-label="isDarkMode ? translateUtils.translate('light-mode') : translateUtils.translate('dark-mode')"
+      >
+        <Transition mode="out-in">
+          <Moon v-if="isDarkMode" :size="20" key="moon" class="theme-icon moon"/>
+          <Sun v-else :size="20" key="sun" class="theme-icon sun"/>
+        </Transition>
+      </button>
+
+      <button
+        v-if="isResponsiveMode"
+        class="hamburger"
+        :class="{ 'is-active': isMenuOpen }"
+        @click="toggleMenu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div
+      v-if="isResponsiveMode"
+      class="mobile-menu"
+      :class="{ 'is-active': isMenuOpen }"
+    >
+      <nav class="mobile-nav">
+        <a href="#hero" @click.prevent="scrollToSection('hero'); closeMenu()">
+          <Home :size="24" />
           <span>{{ translateUtils.translate('home') }}</span>
         </a>
-        
-        <a href="#projects" @click="closeMenu">
-          <Briefcase :size="20" />
+
+        <a href="#projects" @click.prevent="scrollToSection('projects'); closeMenu()">
+          <Briefcase :size="24" />
           <span>{{ translateUtils.translate('projects') }}</span>
         </a>
-        
-        <a href="#about" @click="closeMenu">
-          <User :size="20" />
+
+        <a href="#about" @click.prevent="scrollToSection('about'); closeMenu()">
+          <User :size="24" />
           <span>{{ translateUtils.translate('about') }}</span>
         </a>
-        
-        <a href="#contact" @click="closeMenu">
-          <Mail :size="20" />
+
+        <a href="#contact" @click.prevent="scrollToSection('contact'); closeMenu()">
+          <Mail :size="24" />
           <span>{{ translateUtils.translate('contact') }}</span>
         </a>
       </nav>
-  
-      <div class="header-right">
-        <button 
-          class="lang-toggle-btn" 
-          @click="toggleLanguage" 
-          :aria-label="translateUtils.translate('switch-lang')"
-          :title="translateUtils.translate('switch-lang')"
-        >
-          <Languages :size="20" />
-          <span class="lang-indicator">{{ currentLang.toUpperCase() }}</span>
-        </button>
-  
-        <button 
-          class="theme-toggle-btn" 
-          @click="toggleTheme" 
-          :aria-label="isDarkMode ? translateUtils.translate('light-mode') : translateUtils.translate('dark-mode')"
-        >
-          <Transition mode="out-in">
-            <Moon v-if="isDarkMode" :size="20" key="moon" class="theme-icon moon"/>
-            <Sun v-else :size="20" key="sun" class="theme-icon sun"/>
-          </Transition>
-        </button>
-  
-        <button 
-          v-if="isResponsiveMode"
-          class="hamburger" 
-          :class="{ 'is-active': isMenuOpen }" 
-          @click="toggleMenu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-  
-      <div 
-        v-if="isResponsiveMode"
-        class="mobile-menu" 
-        :class="{ 'is-active': isMenuOpen }"
-      >
-        <nav class="mobile-nav">
-          <a href="#home" @click="closeMenu">
-            <Home :size="24" />
-            <span>{{ translateUtils.translate('home') }}</span>
-          </a>
-          
-          <a href="#projects" @click="closeMenu">
-            <Briefcase :size="24" />
-            <span>{{ translateUtils.translate('projects') }}</span>
-          </a>
-          
-          <a href="#about" @click="closeMenu">
-            <User :size="24" />
-            <span>{{ translateUtils.translate('about') }}</span>
-          </a>
-          
-          <a href="#contact" @click="closeMenu">
-            <Mail :size="24" />
-            <span>{{ translateUtils.translate('contact') }}</span>
-          </a>
-        </nav>
-      </div>
-    </header>
-  </template>
+    </div>
+  </header>
+</template>
 <style scoped>
 .header {
   display: flex;
@@ -299,18 +343,6 @@ onBeforeUnmount(() => {
   background: color-mix(in srgb, var(--accent-color) 10%, transparent);
 }
 
-.desktop-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--accent-color);
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-}
-
 .lang-toggle-btn {
   display: flex;
   align-items: center;
@@ -336,14 +368,16 @@ onBeforeUnmount(() => {
   font-family: "Space Mono", monospace;
 }
 
-@media (max-width: 768px) {
-  .lang-indicator {
-    display: none;
-  }
-  
-  .lang-toggle-btn {
-    padding: 0.4rem;
-  }
+.desktop-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
 }
 
 .desktop-nav a:hover::after {
@@ -427,19 +461,25 @@ onBeforeUnmount(() => {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  display: none;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
 }
 
 .mobile-menu.is-active {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 .mobile-nav {
-  padding: 80px 2rem 2rem;
+  margin-top: 80px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobile-nav a {
@@ -460,24 +500,6 @@ onBeforeUnmount(() => {
   transform: translateX(5px);
 }
 
-/* Animations */
-.v-enter-active,
-.v-leave-active {
-  transition: all 0.3s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-  transform: scale(0.9);
-}
-
-/* Dark Mode Styles */
-.dark-mode {
-  background-color: color-mix(in srgb, var(--bg-primary) 95%, transparent);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
 /* Responsive Styles */
 @media (max-width: 768px) {
   .header {
@@ -485,11 +507,11 @@ onBeforeUnmount(() => {
   }
 
   .desktop-nav {
-    display: none !important;
+    display: none;
   }
 
   .hamburger {
-    display: flex !important;
+    display: flex;
   }
 
   .logo svg {
@@ -501,19 +523,30 @@ onBeforeUnmount(() => {
     font-size: 1.1rem;
   }
 
+  .lang-indicator {
+    display: none;
+  }
+
+  .lang-toggle-btn {
+    padding: 0.4rem;
+  }
+
   .mobile-menu {
-    display: block;
+    display: flex;
   }
 }
 
 @media (min-width: 769px) {
-  .mobile-menu,
+  .mobile-menu {
+    display: none;
+  }
+
   .hamburger {
-    display: none !important;
+    display: none;
   }
 
   .desktop-nav {
-    display: flex !important;
+    display: flex;
   }
 }
 
@@ -541,13 +574,9 @@ onBeforeUnmount(() => {
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .header,
-  .desktop-nav a,
-  .theme-toggle-btn,
-  .hamburger span,
-  .mobile-nav a,
-  .logo {
-    transition: none;
+  * {
+    transition: none !important;
+    animation: none !important;
   }
 }
 </style>

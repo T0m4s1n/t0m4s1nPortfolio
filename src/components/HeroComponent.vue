@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<Props>(), {
   name: 'T0m4s1n',
   title: 'Ingeniero de Software Full Stack',
   description: 'Creando experiencias digitales únicas con pasión por el diseño y la innovación.',
-  profileImage: new URL('../assets/t0m4s1n.png', import.meta.url).href 
+  profileImage: new URL('../assets/t0m4s1n.png', import.meta.url).href
 });
 
 const isVisible = ref(false);
@@ -37,7 +37,7 @@ const scrollToContact = () => {
       <div class="floating-shapes">
         <div v-for="n in 5" :key="n" class="shape" :class="`shape-${n}`"></div>
       </div>
-  
+
       <div class="content-wrapper">
         <div class="text-content" :class="{ 'text-visible': isVisible }">
           <h1 class="greeting">
@@ -50,10 +50,10 @@ const scrollToContact = () => {
           <p class="description" data-translate="hero-description">
             {{ translateUtils.translate('hero-description') }}
           </p>
-          
+
           <div class="cta-container">
-            <button 
-              class="primary-btn" 
+            <button
+              class="primary-btn"
               @click="scrollToWork"
               data-translate="view-projects"
             >
@@ -62,9 +62,9 @@ const scrollToContact = () => {
                 <path d="M13 7l5 5-5 5M6 7l5 5-5 5"></path>
               </svg>
             </button>
-            
-            <button 
-              class="secondary-btn" 
+
+            <button
+              class="secondary-btn"
               @click="scrollToContact"
               data-translate="contact"
             >
@@ -72,12 +72,12 @@ const scrollToContact = () => {
             </button>
           </div>
         </div>
-  
+
         <div class="image-container" :class="{ 'image-visible': isVisible }">
           <div class="image-wrapper">
-            <img 
-              :src="props.profileImage" 
-              :alt="translateUtils.translate('profile-image-alt')" 
+            <img
+              :src="props.profileImage"
+              :alt="translateUtils.translate('profile-image-alt')"
               class="profile-image"
             >
             <div class="image-decoration"></div>

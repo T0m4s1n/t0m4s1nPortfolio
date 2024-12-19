@@ -101,24 +101,8 @@ const projects = ref<Project[]>([
     technologies: ["Vue.js", "Typescript"]
   },
   {
-    id: 3,
-    title: "PapitoMusic",
-    description: "Plataforma de música para escuchar tus canciones favoritas y descubrir nueva música.",
-    translations: {
-      description: {
-        es: "Plataforma de música para escuchar tus canciones favoritas y descubrir nueva música.",
-        en: "Music platform to listen to your favorite songs and discover new music."
-      }
-    },
-    image: new URL("../assets/papitomusic.png", import.meta.url).href,
-    url: "papito-music.vercel.app/home",
-    liveUrl: "https://papito-music.vercel.app/home",
-    githubUrl: "https://github.com/T0m4s1n/PapitoMusic",
-    technologies: ["Vue.js", "Typescript", "Three.js"]
-  },
-  {
     id: 4,
-    title: "Seminario UCC",
+    title: "Seminario",
     description: "Plataforma para el primer seminario nacional de la Universidad Cooperativa de Colombia.",
     translations: {
       description: {
@@ -485,7 +469,6 @@ onMounted(() => {
   align-items: center;
 }
 
-/* Left Side Styles */
 .projects-info {
   opacity: 0;
   transform: translateY(30px);
@@ -564,7 +547,7 @@ onMounted(() => {
 
 /* Browser Window Styles */
 .browser-container {
-  width: 100%;
+  width: 900px;
   height: 100%;
 }
 
@@ -1028,7 +1011,6 @@ iframe {
   }
 
   .projects-info {
-    text-align: center;
     position: relative;
     top: 0;
   }
@@ -1082,6 +1064,11 @@ iframe {
     padding: 4rem 1.5rem;
   }
 
+  .browser-container {
+    width: 92%;
+    height: 100%;
+  }
+
   .browser-tabs {
     gap: 1px;
     padding: 0 4px;
@@ -1102,7 +1089,7 @@ iframe {
     text-align: center;
     position: relative;
     top: 0;
-    width: 90%;
+    width: 80%;
   }
 
   .tab-favicon {
