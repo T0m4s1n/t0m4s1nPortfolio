@@ -122,12 +122,11 @@ const initializeApp = () => {
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme) {
     isDarkMode.value = savedTheme === 'dark';
-    themeUtils[isDarkMode.value ? 'enableDarkMode' : 'enableLightMode']();
   } else {
-    isDarkMode.value = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    isDarkMode.value = true;
+    localStorage.setItem('theme', 'dark');
   }
-
-  updateWindowWidth();
+  themeUtils[isDarkMode.value ? 'enableDarkMode' : 'enableLightMode']();
 };
 
 onMounted(() => {
