@@ -547,13 +547,6 @@ onBeforeUnmount(() => {
   }
 }
 
-/* iOS Safari Fix */
-@supports (-webkit-touch-callout: none) {
-  .mobile-menu {
-    height: -webkit-fill-available;
-  }
-}
-
 /* Hover Effects Enhancement */
 @media (hover: hover) {
   .desktop-nav a:hover {
