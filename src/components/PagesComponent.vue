@@ -74,8 +74,8 @@ const projects = ref<Project[]>([
     description: "Plataforma de logística para inventario de empresas con inteligencia artificial para la gestion de la misma.",
     translations: {
       description: {
-        es: "Plataforma de logística para inventario de empresas con inteligencia artificial para la gestion de la misma.",
-        en: "Logistics platform for business inventory with artificial intelligence for its management."
+        es: "Plataforma de logística para inventario de empresas con inteligencia artificial para la gestion de la misma. Realizada para competencia de Hackhaton ParqueSoft Pasto",
+        en: "Logistics platform for business inventory with artificial intelligence for its management. Made for Hackhaton ParqueSoft Pasto competition"
       }
     },
     image: new URL('../assets/loginar.png', import.meta.url).href,
@@ -107,7 +107,7 @@ const projects = ref<Project[]>([
     translations: {
       description: {
         es: "Plataforma para el primer seminario nacional de la Universidad Cooperativa de Colombia.",
-        en: "Platform for the first national seminar of the Cooperative University of Colombia."
+        en: "Platform for the first national seminar of the Universidad Cooperativa de Colombia."
       }
     },
     image: new URL("../assets/seminario.png", import.meta.url).href,
@@ -210,8 +210,8 @@ onMounted(() => {
             {{ translateUtils.translate('projects-description') }}
           </p>
           <ul class="feature-list">
-                <li 
-                    v-for="feature in features" 
+                <li
+                    v-for="feature in features"
                     :key="feature.id"
                     class="feature-item"
                 >
@@ -245,15 +245,15 @@ onMounted(() => {
               <span class="control maximize"></span>
             </div>
             <div class="browser-tabs">
-              <button 
-                v-for="(project, index) in projects" 
+              <button
+                v-for="(project, index) in projects"
                 :key="project.id"
                 class="browser-tab"
                 :class="{ 'active': index === currentIndex }"
                 @click="goToProject(index)"
               >
-                <img 
-                  :src="project.image" 
+                <img
+                  :src="project.image"
                   :alt="project.title"
                   class="tab-favicon"
                 />
@@ -299,12 +299,12 @@ onMounted(() => {
           <div class="browser-content">
             <Transition name="fade" mode="out-in">
               <div :key="currentProject.id" class="project-content">
-                <div 
-                  v-if="showPreview" 
+                <div
+                  v-if="showPreview"
                   class="project-image-container"
                 >
-                  <img 
-                    :src="currentProject.image" 
+                  <img
+                    :src="currentProject.image"
                     :alt="currentProject.title"
                     class="project-image"
                     @load="imageLoaded"
@@ -314,8 +314,8 @@ onMounted(() => {
                       <h3>{{ currentProject.title }}</h3>
                       <p>{{ getLocalizedDescription(currentProject) }}</p>
                       <div class="tech-stack">
-                        <span 
-                          v-for="tech in currentProject.technologies" 
+                        <span
+                          v-for="tech in currentProject.technologies"
                           :key="tech"
                           class="tech-badge"
                         >
@@ -323,9 +323,9 @@ onMounted(() => {
                         </span>
                       </div>
                       <div class="project-links">
-                        <a 
-                          :href="currentProject.liveUrl" 
-                          target="_blank" 
+                        <a
+                          :href="currentProject.liveUrl"
+                          target="_blank"
                           rel="noopener noreferrer"
                           class="project-link live"
                         >
@@ -334,10 +334,10 @@ onMounted(() => {
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
                           </svg>
                         </a>
-                        <a 
+                        <a
                           v-if="currentProject.githubUrl"
-                          :href="currentProject.githubUrl" 
-                          target="_blank" 
+                          :href="currentProject.githubUrl"
+                          target="_blank"
                           rel="noopener noreferrer"
                           class="project-link github"
                         >
@@ -346,16 +346,16 @@ onMounted(() => {
                             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
                           </svg>
                         </a>
-                        <a 
-                          @click="togglePreview" 
+                        <a
+                          @click="togglePreview"
                           class="project-link live"
                         >
                           {{ translateUtils.translate('view-live-site') }}
-                          <svg 
-                            width="20" 
-                            height="20" 
-                            viewBox="0 0 24 24" 
-                            fill="none" 
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
                             stroke="currentColor"
                             stroke-width="2"
                           >
@@ -368,8 +368,8 @@ onMounted(() => {
                   </div>
                 </div>
 
-                <div 
-                  v-else 
+                <div
+                  v-else
                   class="iframe-container"
                 >
                   <div v-if="!iframeLoaded" class="iframe-loader">
@@ -392,8 +392,8 @@ onMounted(() => {
             </Transition>
 
             <div class="project-dots">
-              <button 
-                v-for="(project, index) in projects" 
+              <button
+                v-for="(project, index) in projects"
                 :key="project.id"
                 class="dot"
                 :class="{ active: index === currentIndex }"
@@ -1029,7 +1029,7 @@ iframe {
     padding: 2rem 1rem;
     font-size: 0.8rem;
   }
-  
+
   .project-links {
     flex-direction: column;
     gap: 0.75rem;
