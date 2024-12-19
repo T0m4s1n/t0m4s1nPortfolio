@@ -106,12 +106,7 @@ const sections = computed<Record<string, Section>>(() => ({
     content: [
       {
         title: translateUtils.translate('about.interests.technical.title'),
-        items: [
-          'AI/ML',
-          'Blockchain',
-          'IoT',
-          'Cloud Computing'
-        ],
+        items: translateUtils.translate('about.interests.technical.items').split(', '),
         color: 'gradient-indigo'
       },
       {
@@ -162,7 +157,6 @@ onMounted(() => {
   }, 100);
 
   translateUtils.onLanguageChange(() => {
-    // Forzar la actualización del contenido
     activeSection.value = activeSection.value;
   });
 });

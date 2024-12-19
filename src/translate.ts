@@ -56,28 +56,14 @@ const translations: Translations = {
     'about.tabs.education': 'Education',
     'about.tabs.interests': 'Interests & Hobbies',
     'about.tabs.goals': 'Goals & Aspirations',
-
-    // Skills Section
     'about.skills.frontend.title': 'Frontend Development',
-    'about.skills.frontend.items': ['Vue.js', 'React', 'TypeScript', 'Tailwind CSS'],
     'about.skills.backend.title': 'Backend Development',
-    'about.skills.backend.items': ['Node.js', 'Python', 'PostgreSQL', 'Redis'],
-
-    // Experience Section
     'about.experience.senior.title': 'Junior Developer',
-    'about.experience.senior.items': ['Main programmer in MasterCoffee', '2023-Present', 'Full Stack Development but enfocated in Frontend'],
     'about.experience.software.title': 'Software Engineer',
-    'about.experience.software.items': ['Worked in Cambridge Pasto Website', '2023-2024', 'Frontend Specialist'],
-
-    // Education Section
-    'about.education.master.title': 'Master\'s Degree',
-    'about.education.master.items': ['Computer Science', 'University X', '2018'],
-    'about.education.bachelor.title': 'Bachelor\'s Degree',
-    'about.education.bachelor.items': ['Software Engineering', 'University Y', '2016'],
-
-    // Interests Section
+    'about.education.master.title': 'Knowledge',
+    'about.education.bachelor.title': 'Studies',
     'about.interests.technical.title': 'Technical Interests',
-    'about.interests.technical.items': ['AI/ML', 'Blockchain', 'IoT', 'Cloud Computing'],
+    'about.interests.technical.items': ['IA', 'Cloud', 'Blockchain', 'Application Development'],
     'about.interests.personal.title': 'Personal Interests',
     'about.interests.personal.items': ['Photography', 'Travel', 'Music', 'Gaming'],
 
@@ -90,28 +76,28 @@ const translations: Translations = {
     // Experience Section
     'about.experience.senior.position': 'Junior',
     'about.experience.senior.date': '2020 - Present',
-    'about.experience.senior.role': 'Full Stack Development Lead',
-    'about.experience.software.position': 'Frontend Developer at Tech Corp',
-    'about.experience.software.date': '2018 - 2020',
-    'about.experience.software.role': 'Frontend Architecture Specialist',
+    'about.experience.senior.role': 'Frontend and Backend Development',
+    'about.experience.software.position': 'Frontend Developer making websites',
+    'about.experience.software.date': '2021 - Present',
+    'about.experience.software.role': 'Frontend Development',
 
-    'about.education.master.degree': 'Computer Science',
-    'about.education.master.school': 'University of Technology',
-    'about.education.master.year': '2018',
+    'about.education.master.degree': 'Studied in MasterMind',
+    'about.education.master.school': 'Practice in LeetCode',
+    'about.education.master.year': 'Winner of the 2024 ParqueSoft Hackathon',
 
     'about.education.bachelor.degree': 'Software Engineering',
-    'about.education.bachelor.school': 'Technical University',
-    'about.education.bachelor.year': '2016',
+    'about.education.bachelor.school': 'University Cooperativa de Colombia',
+    'about.education.bachelor.year': 'Started in 2023 and still in progress',
 
     // Interests Section
-    'about.interests.personal.item1': 'Photography',
-    'about.interests.personal.item2': 'Travel',
-    'about.interests.personal.item3': 'Music Production',
-    'about.interests.personal.item4': 'Game Development',
+    'about.interests.personal.item1': 'Programming',
+    'about.interests.personal.item2': 'Listen to Music',
+    'about.interests.personal.item3': 'Read Sci-fi Books',
+    'about.interests.personal.item4': 'Play Video Games',
 
 
     'about.goals.professional.item1': 'Lead Innovation Projects',
-    'about.goals.professional.item2': 'Mentor Development Teams',
+    'about.goals.professional.item2': 'Work with Development Teams',
     'about.goals.professional.item3': 'Build Impactful Solutions',
 
     'about.goals.personal.item1': 'Continuous Learning',
@@ -134,7 +120,7 @@ const translations: Translations = {
     'footer.description': 'This page is created by me, T0m4s1n, to showcase my software development skills and my journey in the world of software engineering.',
     'footer.sections': 'Sections',
     'footer.home': 'Home',
-    'footer.about': 'About',
+    'footer.about': 'About me',
     'footer.contact': 'Contact',
     'footer.location': 'Pasto, Nariño',
     'footer.rights': 'All rights reserved.',
@@ -148,7 +134,6 @@ const translations: Translations = {
     about: 'Sobre mí',
     contact: 'Contacto',
 
-    // Projects Section
     'my-projects': 'Mis Proyectos',
     'explore-portfolio': 'Explora mi portafolio de trabajo',
     'projects-description': 'Aquí encontrarás una selección de mis proyectos más destacados. Cada uno representa un desafío único que he abordado con pasión y dedicación.',
@@ -163,11 +148,8 @@ const translations: Translations = {
     'loading-site': 'Cargando sitio en vivo...',
     'view-live': 'Ver Sitio en Vivo',
     'view-preview': 'Ver Preview',
-
-    // Project Details
     'project-description': 'Plataforma de logística para inventario de empresas con inteligencia artificial para la gestión de la misma.',
 
-    // General UI
     loading: 'Cargando',
     error: 'Error',
     success: 'Éxito',
@@ -190,39 +172,38 @@ const translations: Translations = {
     'about.skills.backend.title': 'Desarrollo Backend',
 
     // Experience Section
-    'about.experience.senior.title': 'Desarrollador Senior',
-    'about.experience.senior.position': 'Líder Técnico en Innovation Labs',
+    'about.experience.senior.title': 'Desarrollador Junior',
+    'about.experience.senior.position': 'Programador Junior',
     'about.experience.senior.date': '2020 - Presente',
-    'about.experience.senior.role': 'Líder de Desarrollo Full Stack',
-
+    'about.experience.senior.role': 'Desarrollo Frontend' ,
     'about.experience.software.title': 'Ingeniero de Software',
-    'about.experience.software.position': 'Desarrollador Frontend en Tech Corp',
-    'about.experience.software.date': '2018 - 2020',
+    'about.experience.software.position': 'Ingenerio de Software desarrollando sitios web',
+    'about.experience.software.date': '2021 - Presente',
     'about.experience.software.role': 'Especialista en Arquitectura Frontend',
 
     // Education Section
-    'about.education.master.title': 'Maestría',
-    'about.education.master.degree': 'Ciencias de la Computación',
-    'about.education.master.school': 'Universidad de Tecnología',
-    'about.education.master.year': '2018',
+    'about.education.master.title': 'Conocimientos',
+    'about.education.master.degree': 'Estudio en MasterMind',
+    'about.education.master.school': 'Práctica en LeetCode',
+    'about.education.master.year': 'Ganador del Hackathon ParqueSoft 2024',
 
-    'about.education.bachelor.title': 'Licenciatura',
+    'about.education.bachelor.title': 'Estudios',
     'about.education.bachelor.degree': 'Ingeniería de Software',
-    'about.education.bachelor.school': 'Universidad Técnica',
-    'about.education.bachelor.year': '2016',
+    'about.education.bachelor.school': 'Universidad Cooperativa de Colombia',
+    'about.education.bachelor.year': 'Iniciado en 2023 y aún en progreso',
 
     // Interests Section
     'about.interests.technical.title': 'Intereses Técnicos',
     'about.interests.personal.title': 'Intereses Personales',
-    'about.interests.personal.item1': 'Fotografía',
-    'about.interests.personal.item2': 'Viajes',
-    'about.interests.personal.item3': 'Producción Musical',
-    'about.interests.personal.item4': 'Desarrollo de Juegos',
+    'about.interests.personal.item1': 'Programar',
+    'about.interests.personal.item2': 'Escuchar Música',
+    'about.interests.personal.item3': 'Leer Libros de Ciencia Ficción',
+    'about.interests.personal.item4': 'Jugar Videojuegos',
 
     // Goals Section
     'about.goals.professional.title': 'Metas Profesionales',
     'about.goals.professional.item1': 'Liderar Proyectos de Innovación',
-    'about.goals.professional.item2': 'Mentoría de Equipos de Desarrollo',
+    'about.goals.professional.item2': 'Participar en equipos de desarrollo',
     'about.goals.professional.item3': 'Construir Soluciones de Impacto',
 
     'about.goals.personal.title': 'Metas Personales',
@@ -238,19 +219,10 @@ const translations: Translations = {
 
     // Skills Section
     'about.skills.frontend.title': 'Desarrollo Frontend',
-    'about.skills.frontend.items': ['Vue.js', 'React', 'TypeScript', 'Tailwind CSS'],
-    'about.skills.backend.items': ['Node.js', 'Python', 'PostgreSQL', 'Redis'],
 
-    'about.experience.senior.items': ['Tech Lead en Empresa X', '2020 - Presente', 'Desarrollo Full Stack'],
-    'about.experience.software.items': ['Empresa Y', '2018 - 2020', 'Especialista Frontend'],
-
-    // Education Section
-    'about.education.master.items': ['Ciencias de la Computación', 'Universidad X', '2018'],
-    'about.education.bachelor.items': ['Ingeniería de Software', 'Universidad Y', '2016'],
 
     // Interests Section
-    'about.interests.technical.items': ['IA/ML', 'Blockchain', 'IoT', 'Computación en la Nube'],
-    'about.interests.personal.items': ['Fotografía', 'Viajes', 'Música', 'Videojuegos'],
+    'about.interests.technical.items': ['IA', 'Blockchain', 'Ciberseguridad', 'Computación en la Nube'],
 
     // Goals Section
     'about.goals.professional.items': ['Liderar Innovación', 'Mentoría', 'Construir Grandes Productos'],
@@ -272,7 +244,7 @@ const translations: Translations = {
     'footer.description': 'Esta página está realizada por mi persona T0m4s1n, con el fin de mostrar mis habilidades en el desarrollo de software y mi trayecto en el mundo de la ingeniería de software.',
     'footer.sections': 'Secciones',
     'footer.home': 'Inicio',
-    'footer.about': 'Nosotros',
+    'footer.about': 'Sobre mí',
     'footer.contact': 'Contacto',
     'footer.location': 'Pasto, Nariño',
     'footer.rights': 'Todos los derechos reservados.',

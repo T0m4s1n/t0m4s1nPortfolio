@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {
   CodeIcon,
-  Twitter,
   Github,
   Linkedin,
   Instagram,
@@ -30,19 +29,15 @@ const currentYear = new Date().getFullYear();
             {{ translateUtils.translate('footer.description') }}
           </p>
           <div class="social-links">
-            <a href="https://x.com/home?lang=es" target="_blank" rel="noopener noreferrer"
-               class="social-icon" aria-label="Twitter">
-              <Twitter :size="24"/>
-            </a>
-            <a href="" target="_blank" rel="noopener noreferrer"
+            <a href="https://github.com/T0m4s1n" target="_blank" rel="noopener noreferrer"
                class="social-icon" aria-label="Github">
               <Github :size="24"/>
             </a>
-            <a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.linkedin.com/in/tomas-benavides-calderon-81936632b/" target="_blank" rel="noopener noreferrer"
                class="social-icon" aria-label="LinkedIn">
               <Linkedin :size="24"/>
             </a>
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.instagram.com/rompecolumnas/profilecard/?igsh=Mjhsbnc5cWRiaGI0" target="_blank" rel="noopener noreferrer"
                class="social-icon" aria-label="Instagram">
               <Instagram :size="24"/>
             </a>

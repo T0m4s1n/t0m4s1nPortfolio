@@ -1,11 +1,12 @@
 import { ref } from 'vue'
+import type { App } from 'vue'
 
 export const isDarkMode = ref(false)
 
 export const themeUtils = {
   init() {
     const savedTheme = localStorage.getItem('theme')
-    if (savedTheme === 'dark' || 
+    if (savedTheme === 'dark' ||
         (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       this.enableDarkMode()
     } else {
@@ -38,7 +39,7 @@ export const themeUtils = {
 }
 
 export const ThemePlugin = {
-  install: (app: any) => {
+  install: (app: App) => {
     app.config.globalProperties.$theme = themeUtils
     themeUtils.init()
   }
