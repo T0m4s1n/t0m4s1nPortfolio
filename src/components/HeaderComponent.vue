@@ -502,8 +502,6 @@ onBeforeUnmount(() => {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  .header {
-  }
 
   .desktop-nav {
     display: none;

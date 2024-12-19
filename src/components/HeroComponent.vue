@@ -24,68 +24,69 @@ onMounted(() => {
   }, 100);
 });
 
-const scrollToWork = () => {
-  document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
-};
-
 const scrollToContact = () => {
   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
 };
+
+const scrollToprojects = () => {
+  document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+};
 </script>
 <template>
-    <section class="hero-container" aria-label="Portfolio Introduction">
-      <div class="floating-shapes">
-        <div v-for="n in 5" :key="n" class="shape" :class="`shape-${n}`"></div>
-      </div>
+  <section class="hero-container" aria-label="Portfolio Introduction">
+    <div class="floating-shapes">
+      <div v-for="n in 5" :key="n" class="shape" :class="`shape-${n}`"></div>
+    </div>
 
-      <div class="content-wrapper">
-        <div class="text-content" :class="{ 'text-visible': isVisible }">
-          <h1 class="greeting">
-            <span class="greeting-text" data-translate="greeting">
-              {{ translateUtils.translate('greeting') }}
-            </span>
-            <span class="name">{{ props.name }}</span>
-          </h1>
-          <p class="title" data-translate="role">{{ translateUtils.translate('role') }}</p>
-          <p class="description" data-translate="hero-description">
-            {{ translateUtils.translate('hero-description') }}
-          </p>
+    <div class="content-wrapper">
+      <div class="text-content" :class="{ 'text-visible': isVisible }">
+        <h1 class="greeting">
+          <span class="greeting-text" data-translate="greeting">
+            {{ translateUtils.translate('greeting') }}
+          </span>
+          <span class="name">{{ props.name }}</span>
+        </h1>
+        <p class="title" data-translate="role">{{ translateUtils.translate('role') }}</p>
+        <p class="description" data-translate="hero-description">
+          {{ translateUtils.translate('hero-description') }}
+        </p>
 
-          <div class="cta-container">
-            <button
-              class="primary-btn"
-              @click="scrollToWork"
-              data-translate="view-projects"
-            >
-              {{ translateUtils.translate('view-projects') }}
-              <svg class="arrow-icon" viewBox="0 0 24 24" width="18" height="18">
-                <path d="M13 7l5 5-5 5M6 7l5 5-5 5"></path>
-              </svg>
-            </button>
+        <div class="cta-container">
+          <button
+            class="primary-btn"
+            @click="scrollToprojects"
+            data-translate="view-projects"
+          >
+            {{ translateUtils.translate('view-projects') }}
+            <svg class="arrow-icon" viewBox="0 0 24 24" width="18" height="18">
+              <path d="M13 7l5 5-5 5M6 7l5 5-5 5"></path>
+            </svg>
+          </button>
 
-            <button
-              class="secondary-btn"
-              @click="scrollToContact"
-              data-translate="contact"
-            >
-              {{ translateUtils.translate('contact-me') }}
-            </button>
-          </div>
-        </div>
-
-        <div class="image-container" :class="{ 'image-visible': isVisible }">
-          <div class="image-wrapper">
-            <img
-              :src="props.profileImage"
-              :alt="translateUtils.translate('profile-image-alt')"
-              class="profile-image"
-            >
-            <div class="image-decoration"></div>
-          </div>
+          <button
+            class="secondary-btn"
+            @click="scrollToContact"
+            data-translate="contact"
+          >
+            {{ translateUtils.translate('contact-me') }}
+          </button>
         </div>
       </div>
-    </section>
-  </template>
+
+      <div class="image-container" :class="{ 'image-visible': isVisible }">
+        <div class="image-wrapper">
+          <img
+            :src="props.profileImage"
+            :alt="translateUtils.translate('profile-image-alt')"
+            class="profile-image"
+          >
+          <div class="image-decoration"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
 <style scoped>
 .hero-container {
   min-height: calc(100vh - 80px);
@@ -93,6 +94,8 @@ const scrollToContact = () => {
   overflow: hidden;
   padding: 2rem;
   background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
 }
 
 .floating-shapes {
@@ -152,18 +155,6 @@ const scrollToContact = () => {
   animation-delay: -15s;
 }
 
-@keyframes float {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  50% {
-    transform: translate(100px, 100px) rotate(180deg);
-  }
-  100% {
-    transform: translate(0, 0) rotate(360deg);
-  }
-}
-
 .content-wrapper {
   max-width: 1200px;
   margin: 0 auto;
@@ -171,9 +162,10 @@ const scrollToContact = () => {
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   align-items: center;
-  height: 100%;
+  width: 100%;
   position: relative;
   z-index: 1;
+  padding: 2rem 0;
 }
 
 .text-content {
@@ -270,6 +262,9 @@ const scrollToContact = () => {
   opacity: 0;
   transform: translateX(30px);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .image-container.image-visible {
@@ -284,6 +279,7 @@ const scrollToContact = () => {
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   overflow: hidden;
   background: linear-gradient(135deg, var(--accent-color), var(--bg-secondary));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .profile-image {
@@ -307,6 +303,18 @@ const scrollToContact = () => {
   animation: rotate 20s linear infinite;
 }
 
+@keyframes float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(100px, 100px) rotate(180deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+  }
+}
+
 @keyframes rotate {
   from {
     transform: rotate(0deg);
@@ -316,16 +324,31 @@ const scrollToContact = () => {
   }
 }
 
-/* Responsive Design */
 @media (max-width: 968px) {
+  .hero-container {
+    min-height: auto;
+    padding: 4rem 2rem;
+  }
+
   .content-wrapper {
     grid-template-columns: 1fr;
-    text-align: center;
     gap: 3rem;
   }
 
   .text-content {
     order: 2;
+    text-align: center;
+  }
+
+  .image-container {
+    order: 1;
+    max-width: 300px;
+    margin: 0 auto;
+    transform: translateY(30px);
+  }
+
+  .image-container.image-visible {
+    transform: translateY(0);
   }
 
   .description {
@@ -335,26 +358,56 @@ const scrollToContact = () => {
   .cta-container {
     justify-content: center;
   }
-
-  .image-container {
-    order: 1;
-    max-width: 400px;
-    margin: 0 auto;
-  }
 }
 
 @media (max-width: 480px) {
   .hero-container {
-    padding: 1rem;
+    padding: 3rem 1rem;
+  }
+
+  .image-container {
+    max-width: 250px;
+  }
+
+  .greeting {
+    font-size: 2rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .description {
+    font-size: 1rem;
   }
 
   .cta-container {
     flex-direction: column;
+    gap: 1rem;
   }
 
-  .primary-btn, .secondary-btn {
+  .primary-btn,
+  .secondary-btn {
     width: 100%;
     justify-content: center;
+    padding: 0.875rem;
+  }
+}
+
+@media (max-height: 700px) {
+  .hero-container {
+    min-height: auto;
+    padding: 2rem 1rem;
+  }
+
+  .image-container {
+    max-width: 200px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .image-wrapper {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   }
 }
 </style>
