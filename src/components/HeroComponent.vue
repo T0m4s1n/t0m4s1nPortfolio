@@ -89,7 +89,7 @@ const scrollToprojects = () => {
 
 <style scoped>
 .hero-container {
-  min-height: calc(100vh - 80px);
+  min-height: 90vh;
   position: relative;
   overflow: hidden;
   padding: 2rem;
