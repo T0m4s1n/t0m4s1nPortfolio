@@ -226,7 +226,7 @@ onMounted(() => {
 </template>
 <style scoped>
 .about-container {
-  min-height: 100vh;
+  min-height: 20vh;
   background-color: transparent;
   padding: 2rem;
   position: relative;
@@ -308,26 +308,25 @@ onMounted(() => {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   position: relative;
   z-index: 1;
-  padding: 0 1rem;
 }
 
 .nav-button {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 2rem;
-  border-radius: 0.75rem;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
   background-color: var(--bg-secondary);
   color: #fff;
   border: 1px solid transparent;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   font-family: "Poppins", sans-serif;
-  font-weight: 500;
 }
+
 .nav-button:hover {
   transform: translateY(-2px);
   background-color: #3d2a2f;
@@ -349,7 +348,6 @@ onMounted(() => {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  min-height: 400px;
   flex-grow: 1;
 }
 
@@ -361,10 +359,8 @@ onMounted(() => {
   width: 100%;
 }
 
-
 .content-card {
-  height: 100%;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 1rem;
   background-color: rgba(30, 41, 59, 0.8);
   backdrop-filter: blur(10px);
@@ -372,8 +368,6 @@ onMounted(() => {
   transform: translateY(0);
   will-change: transform, opacity;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  flex-direction: column;
 }
 
 .card-title {
@@ -388,24 +382,19 @@ onMounted(() => {
   padding: 0;
   position: relative;
   overflow: hidden;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 
 .item-list li {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   color: #e2e8f0;
-  padding: 0.5rem 0;
-  transition: all 0.3s ease;
+  margin-bottom: 0.5rem;
 }
 
 .bullet {
-  min-width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background-color: currentColor;
   border-radius: 50%;
 }
@@ -454,47 +443,24 @@ onMounted(() => {
   from, to { border-color: transparent }
   50% { border-color: #38bdf8 }
 }
-
-/* Transiciones principales */
 .fade-vertical-enter-active,
 .fade-vertical-leave-active {
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s ease-in-out;
   position: relative;
 }
 
 .fade-vertical-enter-from {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(20px);
 }
 
 .fade-vertical-leave-to {
   opacity: 0;
-  transform: translateY(-30px);
-}
-
-.fade-vertical-move {
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Transiciones para items */
-.fade-vertical-items-enter-active,
-.fade-vertical-items-leave-active {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-}
-
-.fade-vertical-items-enter-from {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.fade-vertical-items-leave-to {
-  opacity: 0;
   transform: translateY(-20px);
 }
 
-.fade-vertical-items-move {
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+.fade-vertical-move {
+  transition: transform 0.4s ease-in-out;
 }
 
 /* Responsive Design */

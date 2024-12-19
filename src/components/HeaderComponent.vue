@@ -503,7 +503,6 @@ onBeforeUnmount(() => {
 /* Responsive Styles */
 @media (max-width: 768px) {
   .header {
-    padding: 1rem;
   }
 
   .desktop-nav {
